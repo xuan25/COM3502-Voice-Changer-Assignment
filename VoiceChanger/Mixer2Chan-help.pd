@@ -1,0 +1,22 @@
+#N canvas 635 476 936 699 12;
+#X obj 128 251 wsprobe~;
+#X obj 24 251 output~;
+#X obj 24 175 *~ 1;
+#X text 74 173 <= Output signal;
+#X obj 24 103 Mixer2chan~;
+#X text 173 123 <= Mix ratio;
+#X text 327 186 Mixer2chan: 2 channel mixer;
+#X text 92 20 <= Input signal A;
+#X text 156 43 <= Input signal B;
+#X obj 160 71 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 6200 1;
+#X obj 24 22 osc~ 440;
+#X obj 90 44 osc~ 880;
+#X text 298 68 <= External control;
+#X connect 2 0 0 0;
+#X connect 2 0 1 1;
+#X connect 2 0 1 0;
+#X connect 4 0 2 0;
+#X connect 9 0 4 2;
+#X connect 10 0 4 0;
+#X connect 11 0 4 1;

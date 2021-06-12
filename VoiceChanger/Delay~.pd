@@ -1,0 +1,49 @@
+#N canvas 499 166 1276 1137 12;
+#X obj 123 228 inlet~;
+#X obj 123 347 +~;
+#X obj 108 149 hsl 128 15 1 1000 1 0 empty empty DELAY 50 8 0 12 -262130
+-159808 -4160 8466 1;
+#X floatatom 242 146 5 0 0 0 - - -;
+#X text 205 164 1000;
+#X text 103 164 1;
+#X obj 141 292 sig~;
+#X obj 57 438 outlet~;
+#X obj 297 142 bng 15 250 50 0 empty empty Phasing 17 7 0 10 -4032
+-4034 -1;
+#X obj 297 161 bng 15 250 50 0 empty empty Delay 17 7 0 10 -4032 -4034
+-1;
+#X obj 297 180 bng 15 250 50 0 empty empty Echo 17 7 0 10 -4032 -4034
+-1;
+#X msg 202 52 80;
+#X msg 235 52 300;
+#X msg 169 52 10;
+#X obj 322 104 tgl 15 0 empty empty ON 17 7 0 10 -24198 -24198 -1 1
+1;
+#X text 294 120 Presets;
+#X obj 57 382 Mixer2Chan~;
+#X obj 297 65 loadbang;
+#X obj 155 262 delwrite~ dl-delayline 1000;
+#X obj 141 319 vd~ dl-delayline;
+#X obj 376 101 switchstyle;
+#X text 240 164 ms;
+#X connect 0 0 1 0;
+#X connect 0 0 18 0;
+#X connect 0 0 16 0;
+#X connect 1 0 16 1;
+#X connect 2 0 3 0;
+#X connect 3 0 6 0;
+#X connect 6 0 19 0;
+#X connect 8 0 13 0;
+#X connect 9 0 11 0;
+#X connect 10 0 12 0;
+#X connect 11 0 2 0;
+#X connect 12 0 2 0;
+#X connect 13 0 2 0;
+#X connect 14 0 16 2;
+#X connect 14 0 20 0;
+#X connect 16 0 7 0;
+#X connect 17 0 8 0;
+#X connect 17 0 14 0;
+#X connect 19 0 1 1;
+#X connect 20 0 14 0;
+#X coords 0 -1 1 1 260 100 1 100 100;

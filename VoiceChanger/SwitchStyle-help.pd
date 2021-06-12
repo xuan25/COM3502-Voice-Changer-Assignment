@@ -1,0 +1,9 @@
+#N canvas 635 476 936 699 12;
+#X text 38 142 SwitchStyle: Style control of switches;
+#X obj 176 103 tgl 15 0 empty empty ON 17 7 0 10 -24198 -24198 -1 1
+1;
+#X obj 41 100 switchstyle;
+#X obj 176 62 loadbang;
+#X connect 1 0 2 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;

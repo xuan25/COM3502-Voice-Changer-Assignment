@@ -1,0 +1,17 @@
+#N canvas 635 476 936 699 12;
+#X text 286 111 <= Switch;
+#X obj 129 398 wsprobe~;
+#X obj 25 398 output~;
+#X obj 25 322 *~ 1;
+#X obj 25 29 noise~;
+#X text 82 29 <= Input signal;
+#X obj 25 110 Flanger~;
+#X text 332 196 Flanger: Can be used for Flanging effect.;
+#X text 75 320 <= Output signal;
+#X text 331 279 Warning: This patch can only be used once in each pd
+instance.;
+#X connect 3 0 1 0;
+#X connect 3 0 2 1;
+#X connect 3 0 2 0;
+#X connect 4 0 6 0;
+#X connect 6 0 3 0;

@@ -1,0 +1,135 @@
+#N canvas 383 55 2126 1160 12;
+#X obj 942 76 output~;
+#X obj 14 11 FileLoader~;
+#X obj 81 208 LowCut~;
+#X obj 81 364 GraphicEqualiser~;
+#X obj 81 552 Tremolo~;
+#X obj 81 733 RingModulation~;
+#X obj 81 873 PitchShifting~;
+#X obj 81 1015 Vibrato~;
+#X obj 81 1397 Delay~;
+#X obj 80 1187 Flanger~;
+#X obj 80 1581 Reverberation~;
+#X obj 14 294 Mixer2Chan~ 1;
+#X obj 14 480 Mixer2Chan~ 1;
+#X obj 14 658 Mixer2Chan~ 1;
+#X obj 14 799 Mixer2Chan~ 1;
+#X obj 14 939 Mixer2Chan~ 1;
+#X obj 14 1111 Mixer2Chan~ 1;
+#X obj 14 1323 Mixer2Chan~ 1;
+#X obj 14 1504 Mixer2Chan~ 1;
+#X obj 733 1582 AdvReverb~;
+#X obj 13 1912 Mixer2Chan~ 1;
+#X obj 107 72 adc~;
+#X obj 13 1979 s~ output;
+#X obj 942 12 r~ output;
+#X text 106 14 <= Audio File Loader;
+#X text 147 73 <= Mic Input;
+#X text 122 155 <= Source selector;
+#N canvas 1394 382 934 629 SoSel 0;
+#X obj 73 189 inlet~;
+#X obj 140 189 inlet~;
+#X obj 135 121 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262130
+-159808 -1 0;
+#X obj 73 238 Mixer2Chan~;
+#X obj 73 311 outlet~;
+#X text 100 119 File;
+#X text 165 119 Live;
+#X connect 0 0 3 0;
+#X connect 1 0 3 1;
+#X connect 2 0 3 2;
+#X connect 3 0 4 0;
+#X coords 0 -1 1 1 100 40 1 100 100;
+#X restore 14 136 pd SoSel;
+#X text 167 296 <= Low-cut mixer;
+#X text 165 482 <= Graphic equaliser mixer;
+#X text 171 658 <= Tremolo mixer;
+#X text 167 800 <= Ring modulation mixer;
+#X text 169 938 <= Pitch shifting mixer;
+#X text 169 1111 <= Vibrato mixer;
+#X text 170 1516 <= Delay mixer;
+#X text 170 1333 <= Flanger mixer;
+#X text 1331 1582 <= AdvReverb: Can be used to create advanced reverb.
+;
+#X text 1428 1608 The Equalizer is used to simulate the absorption
+and enhancement of the energy of different frequencies on the surface
+of the reflective medium during the sound reflection process. It is
+used to simulate more realistic sound reflection.;
+#X text 339 1583 <= Reverberation: Can be used to create simple reverb.
+;
+#X text 340 1189 <= Flanger: Can be used for Flanging effect.;
+#X text 356 1399 <= Delay: Can be used for Phasing effect or Delay
+effect.;
+#X text 347 1015 <= Vibrato: Can be used to simulate Gollum-like sounds
+or fluctuating pitches.;
+#X text 296 871 <= Pitch shifting: Can be used to adjust the pitch
+(frequency) of the sound.;
+#X text 378 733 <= Ring modulation: Can be used to simulate robot-like
+sounds.;
+#X text 377 554 <= Tremolo: Can be used to simulate shivering sounds
+or synthetic-like sound.;
+#X text 678 364 <= Graphic equaliser: The spectral energy distribution
+of the input sound can be adjusted.;
+#X text 351 208 <= Low-cut: Can be used to attenuate low-frequency
+hardware noise.;
+#X text 1038 78 <= Output adjustment;
+#X obj 354 83 bng 15 250 50 0 empty empty VoiceChanger_by_Boxuan_Shan_03/12/2020
+17 7 0 20 -262144 -1 -1;
+#X text 96 1756 Normally \, you only need to enable one of Reverberation
+or AdvReverb;
+#X text 167 1922 <= Reverb mixer;
+#N canvas 912 496 1204 728 ReverbSelector 0;
+#X obj 209 126 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262130
+-159808 -4160 1;
+#X text 108 125 Reverberation;
+#X text 243 125 AdvReverb;
+#X obj 76 198 Mixer2Chan~;
+#X obj 76 159 inlet~;
+#X obj 143 159 inlet~;
+#X obj 76 259 outlet~;
+#X obj 209 43 loadbang;
+#X msg 209 74 1;
+#X connect 0 0 3 2;
+#X connect 3 0 6 0;
+#X connect 4 0 3 0;
+#X connect 5 0 3 1;
+#X connect 7 0 8 0;
+#X connect 8 0 0 0;
+#X coords 0 -1 1 1 220 50 1 100 100;
+#X restore 80 1814 pd ReverbSelector;
+#X text 313 1834 <= Reverberation - AdvReverb selector;
+#X connect 1 0 27 0;
+#X connect 2 0 11 1;
+#X connect 3 0 12 1;
+#X connect 4 0 13 1;
+#X connect 5 0 14 1;
+#X connect 6 0 15 1;
+#X connect 7 0 16 1;
+#X connect 8 0 18 1;
+#X connect 9 0 17 1;
+#X connect 10 0 51 0;
+#X connect 11 0 3 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 12 0 4 0;
+#X connect 13 0 14 0;
+#X connect 13 0 5 0;
+#X connect 14 0 15 0;
+#X connect 14 0 6 0;
+#X connect 15 0 16 0;
+#X connect 15 0 7 0;
+#X connect 16 0 17 0;
+#X connect 16 0 9 0;
+#X connect 17 0 18 0;
+#X connect 17 0 8 0;
+#X connect 18 0 20 0;
+#X connect 18 0 10 0;
+#X connect 18 0 19 0;
+#X connect 19 0 51 1;
+#X connect 20 0 22 0;
+#X connect 21 0 27 1;
+#X connect 23 0 0 0;
+#X connect 23 0 0 1;
+#X connect 27 0 2 0;
+#X connect 27 0 11 0;
+#X connect 51 0 20 1;

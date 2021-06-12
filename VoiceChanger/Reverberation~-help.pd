@@ -1,0 +1,31 @@
+#N canvas 376 467 936 699 12;
+#X text 74 383 - Output signal;
+#X text 283 174 <= Switch;
+#X obj 128 461 wsprobe~;
+#X obj 24 461 output~;
+#X obj 24 385 *~ 1;
+#X obj 24 92 noise~;
+#X obj 24 129 *~;
+#X msg 105 92 0;
+#X msg 73 92 1;
+#X obj 73 19 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 64 128 <= Input signal;
+#X text 100 16 <= Send a pulse;
+#X obj 105 66 delay 10;
+#X obj 24 173 Reverberation~;
+#X text 246 316 Reverberation: Can be used to create simple reverberation.
+;
+#X text 247 356 Warning: This patch can only be used once in each pd
+instance.;
+#X connect 4 0 2 0;
+#X connect 4 0 3 1;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 6 0 13 0;
+#X connect 7 0 6 1;
+#X connect 8 0 6 1;
+#X connect 9 0 8 0;
+#X connect 9 0 12 0;
+#X connect 12 0 7 0;
+#X connect 13 0 4 0;

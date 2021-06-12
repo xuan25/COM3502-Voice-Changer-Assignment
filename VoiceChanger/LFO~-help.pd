@@ -1,0 +1,34 @@
+#N canvas 483 459 619 679 12;
+#X obj 128 557 wsprobe~;
+#X obj 32 604 output~;
+#X obj 33 463 *~ 1;
+#X floatatom 225 463 5 0 0 0 - - -;
+#X floatatom 128 503 5 0 0 0 - - -;
+#X floatatom 128 260 5 0 100 0 - - -;
+#X floatatom 32 230 5 0 50 0 - - -;
+#X obj 128 293 / 100;
+#X obj 225 295 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 173 503 speed output (Hertz);
+#X text 268 463 depth output (range 0-1);
+#X obj 32 331 LFO~ 20 0.5;
+#X obj 51 17 LFO~ 20 0.5;
+#X text 259 21 - low frequency oscillator;
+#X text 244 332 <= optional creation arguments:;
+#X text 293 351 - default speed (float);
+#X text 294 369 - default depth (float);
+#X text 247 293 bang: reset speed \, depth and phase;
+#X text 173 260 number: set depth;
+#X text 73 229 number: set speed (Hertz);
+#X text 95 164 The low frequency oscillator can generate a low frequency
+oscillation signal of a certain frequency and depth.;
+#X connect 2 0 0 0;
+#X connect 2 0 1 1;
+#X connect 2 0 1 0;
+#X connect 5 0 7 0;
+#X connect 6 0 11 0;
+#X connect 7 0 11 1;
+#X connect 8 0 11 2;
+#X connect 11 0 2 0;
+#X connect 11 1 4 0;
+#X connect 11 2 3 0;

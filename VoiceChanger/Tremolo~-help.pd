@@ -1,0 +1,16 @@
+#N canvas 635 476 936 699 12;
+#X obj 128 282 wsprobe~;
+#X obj 24 282 output~;
+#X obj 24 206 *~ 1;
+#X text 74 208 <= Output signal;
+#X obj 24 22 osc~ 440;
+#X text 92 20 <= Input signal;
+#X text 311 86 <= Switch;
+#X obj 24 84 Tremolo~;
+#X text 232 226 Tremolo: Can be used to simulate shivering sounds or
+synthetic-like sound.;
+#X connect 2 0 0 0;
+#X connect 2 0 1 1;
+#X connect 2 0 1 0;
+#X connect 4 0 7 0;
+#X connect 7 0 2 0;

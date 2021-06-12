@@ -1,0 +1,187 @@
+#N canvas 97 198 1790 920 12;
+#X obj 105 357 outlet~;
+#N canvas 782 345 450 300 (subpatch) 0;
+#X array geq-gain 256 float 1;
+#A 0 1.01667 1.1 1.18333 1.25 1.28333 1.31667 1.3 1.26667 1.21667 1.13333
+1.06667 1.03333 1.01667 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1.01667 1.05 1.1 1.15 1.2 1.26666 1.34999 1.39999 1.43333
+1.45 1.45 1.43333 1.36666 1.31666 1.23333 1.16666 1.11666 1.06667 1.03333
+1.03333 1.01667 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+#X coords 0 2 255 0 512 60 1 0 0;
+#X restore 147 129 graph;
+#X text 143 190 0 Hz;
+#X text 627 190 22 KHz;
+#X obj 105 228 inlet~;
+#N canvas 683 539 412 287 Hann-window 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array geq-hann 512 float 0;
+#X coords 0 1 511 0 200 120 1;
+#X restore 184 42 graph;
+#X msg 126 126 0;
+#X obj 20 175 osc~;
+#X obj 20 127 samplerate~;
+#X obj 20 198 *~ -0.5;
+#X obj 20 221 +~ 0.5;
+#X text 170 34 1;
+#X text 163 152 0;
+#X text 179 165 0;
+#X obj 20 151 / 512;
+#X obj 12 104 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X text 249 15 Hann window;
+#X text 68 173 period 512;
+#X obj 12 9 loadbang;
+#X msg 34 42 \; pd dsp 1;
+#X text 365 168 511;
+#X obj 12 246 tabwrite~ geq-hann;
+#X connect 1 0 2 1;
+#X connect 2 0 4 0;
+#X connect 3 0 9 0;
+#X connect 4 0 5 0;
+#X connect 5 0 16 0;
+#X connect 9 0 2 0;
+#X connect 10 0 3 0;
+#X connect 10 0 1 0;
+#X connect 10 0 16 0;
+#X connect 13 0 10 0;
+#X connect 13 0 14 0;
+#X restore 167 229 pd Hann-window;
+#X text 392 190 11 KHz;
+#X text 254 190 5.5 KHz;
+#X text 508 190 16.5 KHz;
+#X obj 105 296 Mixer2Chan~;
+#X obj 642 104 tgl 15 0 empty empty OFF 17 7 0 10 -258699 -258699 -1
+0 1;
+#X text 112 150 0 dB;
+#X text 106 120 +6 dB;
+#X text 106 179 -∞ dB;
+#X obj 410 109 bng 15 250 50 0 empty empty Plain 17 7 0 10 -4032 -4034
+-1;
+#X obj 642 66 loadbang;
+#X msg 779 429 const 1;
+#N canvas 392 426 1686 709 ge-fft 0;
+#X obj 15 71 *~;
+#X obj 15 13 inlet~;
+#X obj 15 102 rfft~;
+#X obj 15 316 *~;
+#X obj 48 316 *~;
+#X obj 72 13 block~ 512 4;
+#X obj 63 222 *~;
+#X obj 15 411 *~;
+#X obj 63 281 /~ 768;
+#X obj 63 252 *~;
+#X obj 15 352 rifft~;
+#X obj 15 444 outlet~;
+#X text 156 42 <= window the incoming block;
+#X text 58 101 <= compute the FFT;
+#X text 186 141 <= get the gain profile;
+#X text 127 170 <= ignore values outside the range;
+#X text 92 238 <= quartic scaling for easy editing;
+#X text 108 280 <= normalise by 512 x 3/2;
+#X text 75 314 <= modify the real and imaginary amplitudes;
+#X text 62 350 <= compute the inverse FFT;
+#X text 159 382 <= window the result;
+#X text 157 11 <= blocks of 512 samples at intervals of 128;
+#X obj 63 143 tabreceive~ geq-gain;
+#X obj 30 43 tabreceive~ geq-hann;
+#X obj 30 383 tabreceive~ geq-hann;
+#X obj 63 171 clip~ 0 2;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 3 0 10 0;
+#X connect 4 0 10 1;
+#X connect 6 0 9 0;
+#X connect 6 0 9 1;
+#X connect 7 0 11 0;
+#X connect 8 0 3 1;
+#X connect 8 0 4 1;
+#X connect 9 0 8 0;
+#X connect 10 0 7 0;
+#X connect 22 0 25 0;
+#X connect 23 0 0 1;
+#X connect 24 0 7 1;
+#X connect 25 0 6 0;
+#X connect 25 0 6 1;
+#X restore 171 265 pd ge-fft;
+#X obj 779 457 s geq-gain;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array geq-gain-bassbost 256 float 1;
+#A 0 1.61667 1.6 1.53333 1.45 1.38333 1.3 1.25 1.2 1.16667 1.13333
+1.1 1.06667 1.05 1.03333 1.01667 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+#X coords 0 2 256 0 512 60 1 0 0;
+#X restore 853 60 graph;
+#X obj 1063 386 - 1;
+#X obj 1029 424 spigot;
+#X obj 1029 386 int;
+#X msg 1029 352 256;
+#X obj 883 297 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 883 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 855 424 tabread;
+#X obj 855 457 tabwrite geq-gain;
+#X msg 883 316 set geq-gain-bassbost;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array geq-gain-speechbost 256 float 1;
+#A 0 0.983333 1.01667 1.1 1.18333 1.25 1.28333 1.31667 1.3 1.26667
+1.21667 1.13333 1.06667 1.03333 1.01667 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1.01667 1.05 1.1 1.15 1.2 1.26666 1.34999
+1.39999 1.43333 1.45 1.45 1.43333 1.36666 1.31666 1.23333 1.16666 1.11666
+1.06667 1.03333 1.03333 1.01667 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1;
+#X coords 0 2 256 0 512 60 1 0 0;
+#X restore 853 144 graph;
+#X msg 883 272 set geq-gain-speechbost;
+#X obj 461 109 bng 15 250 50 0 empty empty Bass_bost 17 7 0 10 -4032
+-4034 -1;
+#X obj 539 109 bng 15 250 50 0 empty empty Speech_bost 17 7 0 10 -4032
+-4034 -1;
+#X text 353 107 Presets;
+#X obj 689 103 switchstyle;
+#X connect 4 0 17 0;
+#X connect 4 0 9 0;
+#X connect 9 0 0 0;
+#X connect 10 0 9 2;
+#X connect 10 0 34 0;
+#X connect 14 0 16 0;
+#X connect 15 0 10 0;
+#X connect 15 0 32 0;
+#X connect 16 0 18 0;
+#X connect 17 0 9 1;
+#X connect 20 0 22 0;
+#X connect 21 0 20 0;
+#X connect 22 0 21 1;
+#X connect 22 0 21 0;
+#X connect 22 0 26 0;
+#X connect 22 0 27 1;
+#X connect 23 0 22 0;
+#X connect 24 0 28 0;
+#X connect 24 0 23 0;
+#X connect 25 0 30 0;
+#X connect 25 0 23 0;
+#X connect 26 0 27 0;
+#X connect 28 0 26 0;
+#X connect 30 0 26 0;
+#X connect 31 0 24 0;
+#X connect 32 0 25 0;
+#X connect 34 0 10 0;
+#X coords 0 -1 1 1 580 110 1 100 100;

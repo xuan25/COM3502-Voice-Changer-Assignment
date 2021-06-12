@@ -1,0 +1,65 @@
+#N canvas 902 154 1364 1168 12;
+#X obj 102 391 +~;
+#X obj 120 280 sig~;
+#X obj 138 333 sig~;
+#X obj 120 359 *~;
+#X obj 102 210 inlet~;
+#X obj 36 528 outlet~;
+#X obj 288 160 bng 15 250 50 0 empty empty Room 17 7 0 10 -4032 -4034
+-1;
+#X obj 312 104 tgl 15 0 empty empty ON 17 7 0 10 -24198 -24198 -1 1
+1;
+#X text 284 120 Presets;
+#X obj 108 120 hsl 128 15 1 1000 1 0 empty empty DELAY 50 8 0 12 -262130
+-159808 -4160 16112 1;
+#X obj 108 157 hsl 128 15 0 1 0 0 empty empty FEEDBACK 35 8 0 12 -262130
+-159808 -4160 10160 1;
+#X floatatom 242 117 5 0 0 0 - - -;
+#X floatatom 242 154 5 0 0 0 - - -;
+#X text 103 172 0;
+#X text 226 172 1;
+#X text 205 135 1000;
+#X obj 37 460 Mixer2Chan~;
+#X msg 146 35 30;
+#X msg 179 35 0.4;
+#X msg 212 54 80;
+#X obj 288 141 bng 15 250 50 0 empty empty Hall 17 7 0 10 -4032 -4034
+-1;
+#X text 104 135 1;
+#X msg 245 54 0.4;
+#X obj 288 68 loadbang;
+#X obj 159 210 r~ rb-feedback;
+#X obj 167 428 s~ rb-feedback;
+#X obj 120 306 vd~ rb-delayline;
+#X obj 159 250 delwrite~ rb-delayline 1000;
+#X obj 370 102 switchstyle;
+#X text 240 135 ms;
+#X connect 0 0 25 0;
+#X connect 0 0 16 1;
+#X connect 1 0 26 0;
+#X connect 2 0 3 1;
+#X connect 3 0 0 1;
+#X connect 4 0 0 0;
+#X connect 4 0 27 0;
+#X connect 4 0 16 0;
+#X connect 6 0 17 0;
+#X connect 6 0 18 0;
+#X connect 7 0 16 2;
+#X connect 7 0 28 0;
+#X connect 9 0 11 0;
+#X connect 10 0 12 0;
+#X connect 11 0 1 0;
+#X connect 12 0 2 0;
+#X connect 16 0 5 0;
+#X connect 17 0 9 0;
+#X connect 18 0 10 0;
+#X connect 19 0 9 0;
+#X connect 20 0 19 0;
+#X connect 20 0 22 0;
+#X connect 22 0 10 0;
+#X connect 23 0 20 0;
+#X connect 23 0 7 0;
+#X connect 24 0 27 0;
+#X connect 26 0 3 0;
+#X connect 28 0 7 0;
+#X coords 0 -1 1 1 250 90 1 100 100;

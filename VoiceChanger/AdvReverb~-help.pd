@@ -1,0 +1,36 @@
+#N canvas 376 467 936 699 12;
+#X obj 24 173 AdvReverb~;
+#X text 74 383 - Output signal;
+#X text 608 174 <= Switch;
+#X text 608 228 <= Basic parameters of reverberation;
+#X text 608 292 <= Reverberation equalizer;
+#X obj 128 461 wsprobe~;
+#X obj 24 461 output~;
+#X obj 24 385 *~ 1;
+#X text 253 402 AdvReverb: Can be used to create advanced reverberation.
+The equalizer in this effect is used to simulate the absorption and
+enhancement of the energy of different frequencies on the surface of
+the reflective medium during the sound reflection process. It is used
+to simulate more realistic sound reflection.;
+#X obj 24 92 noise~;
+#X obj 24 129 *~;
+#X msg 105 92 0;
+#X msg 73 92 1;
+#X obj 73 19 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 64 128 <= Input signal;
+#X text 100 16 <= Send a pulse;
+#X obj 105 66 delay 10;
+#X text 254 514 Warning: This patch can only be used once in each pd
+instance.;
+#X connect 0 0 7 0;
+#X connect 7 0 5 0;
+#X connect 7 0 6 1;
+#X connect 7 0 6 0;
+#X connect 9 0 10 0;
+#X connect 10 0 0 0;
+#X connect 11 0 10 1;
+#X connect 12 0 10 1;
+#X connect 13 0 12 0;
+#X connect 13 0 16 0;
+#X connect 16 0 11 0;

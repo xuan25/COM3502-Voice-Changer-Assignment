@@ -1,0 +1,17 @@
+#N canvas 635 476 936 699 12;
+#X obj 128 251 wsprobe~;
+#X obj 24 251 output~;
+#X obj 24 175 *~ 1;
+#X text 74 177 <= Output signal;
+#X obj 24 22 osc~ 440;
+#X obj 24 84 PitchShifting~;
+#X text 229 109 <= Shift control;
+#X text 92 20 <= Input signal;
+#X text 235 198 Pitch shifting: Can be used to adjust the pitch (frequency)
+of the sound.;
+#X text 230 87 <= Switch;
+#X connect 2 0 0 0;
+#X connect 2 0 1 1;
+#X connect 2 0 1 0;
+#X connect 4 0 5 0;
+#X connect 5 0 2 0;

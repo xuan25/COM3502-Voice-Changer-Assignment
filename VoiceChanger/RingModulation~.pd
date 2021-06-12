@@ -1,0 +1,39 @@
+#N canvas 490 304 1492 1014 12;
+#X obj 119 261 LFO~;
+#X obj 102 415 *~;
+#X obj 101 222 inlet~;
+#X obj 35 523 outlet~;
+#X text 298 121 Presets;
+#X obj 300 141 bng 15 250 50 0 empty empty Synthetic 17 7 0 10 -4032
+-4034 -1;
+#X obj 112 126 hsl 128 15 0 300 0 0 empty empty FREQUENCY 34 8 0 12
+-262130 -159808 -4160 4234 1;
+#X floatatom 246 123 5 0 0 0 - - -;
+#X text 108 141 0;
+#X obj 35 455 mixer2Chan~;
+#X obj 341 104 tgl 15 0 empty empty ON 17 7 0 10 -24198 -24198 -1 1
+1;
+#X msg 215 233 1;
+#X obj 215 205 loadbang;
+#X msg 212 50 50;
+#X text 216 141 300;
+#X obj 300 63 loadbang;
+#X obj 391 102 switchstyle;
+#X text 244 141 Hz;
+#X connect 0 0 1 1;
+#X connect 1 0 9 1;
+#X connect 2 0 1 0;
+#X connect 2 0 9 0;
+#X connect 5 0 13 0;
+#X connect 6 0 7 0;
+#X connect 7 0 0 0;
+#X connect 9 0 3 0;
+#X connect 10 0 16 0;
+#X connect 10 0 9 2;
+#X connect 11 0 0 1;
+#X connect 12 0 11 0;
+#X connect 13 0 6 0;
+#X connect 15 0 10 0;
+#X connect 15 0 5 0;
+#X connect 16 0 10 0;
+#X coords 0 -1 1 1 280 60 1 100 100;

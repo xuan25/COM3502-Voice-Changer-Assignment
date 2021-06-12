@@ -1,0 +1,11 @@
+#N canvas 376 467 936 699 12;
+#X obj 130 219 wsprobe~;
+#X obj 26 219 output~;
+#X obj 26 143 *~ 1;
+#X obj 26 31 FileLoader~;
+#X text 246 96 Delay: Can be used for Wav File loading.;
+#X text 76 141 <= Output signal;
+#X connect 2 0 0 0;
+#X connect 2 0 1 1;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;

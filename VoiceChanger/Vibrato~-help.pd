@@ -1,0 +1,16 @@
+#N canvas 635 476 936 699 12;
+#X obj 128 282 wsprobe~;
+#X obj 24 282 output~;
+#X obj 24 206 *~ 1;
+#X text 74 208 <= Output signal;
+#X obj 24 22 osc~ 440;
+#X text 92 20 <= Input signal;
+#X text 282 86 <= Switch;
+#X obj 24 84 Vibrato~;
+#X text 230 226 Vibrato: Can be used to simulate Gollum-like sounds
+or fluctuating pitches.;
+#X connect 2 0 0 0;
+#X connect 2 0 1 1;
+#X connect 2 0 1 0;
+#X connect 4 0 7 0;
+#X connect 7 0 2 0;
